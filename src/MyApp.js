@@ -9,11 +9,8 @@ const MyApp = () => {
     const[GamePictureUrl,setGamePictureUrl] = useState({GamePictureUrl : "test"})
     const url = "http://localhost:8080/home/";
     const[game , setGame] = useState([])
-
-    const[GameNameUpdate,setGameNameUpdate] = useState({GameName : ""})
-
-    const[GameCompanyUpdate,setGameCompanyUpdate] = useState({GameCompany : "test"})
-    const[GamePictureUrlUpdate,setGamePictureUrlUpdate] = useState({GamePictureUrl : "test"})
+ // ****************************************************************
+    const[GameNameUpdate,setGameNameUpdate] = useState([])
 
     
     // GET
@@ -23,9 +20,9 @@ const MyApp = () => {
    console.log(games)
 
    //Get Updated List 
-   const updatedListHandler = () => {
-    axios.get(url).then(json => setGame(json.data))
-     
+   const updatedListHandler = async (event) => {
+    event.preventDefault()
+    axios.get(url).then(json => setGames(json.data))
     }
 
 
@@ -136,16 +133,16 @@ const deleteHandler = (id ,e) => {
             <br />
            
            {Object.entries(game).map(([key,val]) => 
-            <h2 key={key}>{key} : {val}   <input onChange={handleUpdateSubmit} value={GameNameUpdate.GameName} type="text" defaultValue="type here you updated info"/>
+            <h2 key={key}>{key} : {val}   
             <p> Edited it as : {GameNameUpdate.GameName}</p>
             <button onClick={() => updateHandler(val)}>EDIT ?</button>
              </h2> 
            )}
-           
+           <h1>Change Game Name : </h1>
+           <input onChange={handleUpdateSubmit} value={GameNameUpdate.GameName} type="text" defaultValue="type here you updated info"/>
             
            
-            {/* <button onClick={() => updateHandler()}>Submit this changes ?</button> */}
-
+            
             
             
         </div>
