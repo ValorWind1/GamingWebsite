@@ -2,14 +2,16 @@ import React,{useState,useEffect} from "react"
 import axios from 'axios';
 import Title from "./components/titleComponent/Title"
 import Gamelist from "./components/CurrentGameList/Gamelist"
+import Addgames from "./components/AddGames/Addgames"
 import "./MyApp.css";
+import Select_ChangeName from "./components/Select_Change_GameName/Select_ChangeName";
 
 const MyApp = () => {
 
     const [games,setGames] = useState([])
-    const[GameName,setGameName] = useState({GameName : " test"})
-    const[GameCompany,setGameCompany] = useState({GameCompany : "test"})
-    const[GamePictureUrl,setGamePictureUrl] = useState({GamePictureUrl : "test"})
+    const[GameName,setGameName] = useState({GameName : " "})
+    const[GameCompany,setGameCompany] = useState({GameCompany : " "})
+    const[GamePictureUrl,setGamePictureUrl] = useState({GamePictureUrl : " "})
     const url = "http://localhost:8080/home/";
     const[game , setGame] = useState([])
  // ****************************************************************
@@ -102,46 +104,22 @@ const deleteHandler = (id ,e) => {
         setGameNameUpdate({GameName: event.target.value})
     }
 
-
+    
 
     return (
         <div>
+
             <Title />
             <Gamelist games={games} deleteHandler={deleteHandler}
                 selectSpecificGameHandler={selectSpecificGameHandler}
             />
-            <button style={{backgroundColor:"Chartreuse"}} onClick={updatedListHandler}>Generate Updated List</button>         
-            <hr></hr>
 
-            <form>
-                <input type="text" value={GameName.GameName} onChange={GameNameHandler}/>
-                <h5>Change game name to : {GameName.GameName}</h5>
+            <div className="flex-container">
+            <Addgames GameName={GameCompany.GameName} GameCompany={GameCompany.GameCompany} GamePictureUrl={GamePictureUrl.GamePictureUrl} GameNameHandler={GameNameHandler}  GameCompanyHandler={GameCompanyHandler}  GamePictureUrlHandler={GamePictureUrlHandler} submithandler={submithandler} updatedListHandler={updatedListHandler}/>
 
-                <input type="text" value={GameCompany.GameCompany} onChange={GameCompanyHandler}/>
-                <h5>Change game name to : {GameCompany.GameCompany}</h5>
+            <Select_ChangeName style={{display:"flex",alignItems: 'center'}} game={game} gameNameUpdate={GameNameUpdate.GameName} updateHandler={updateHandler} handleUpdateSubmit={handleUpdateSubmit} valueG={GameNameUpdate.GameName}/>
+            </div>
 
-                <input type="text" value={GamePictureUrl.GamePictureUrl} onChange={GamePictureUrlHandler}/>
-                <h5>Change game name to : {GamePictureUrl.GamePictureUrl}</h5>
-
-                <button onClick={submithandler}>Submit !</button>
-            </form >
-            
-            <hr/>
-            <br />
-           
-           {Object.entries(game).map(([key,val]) => 
-            <h2 key={key}>{key} : {val}   
-            <p> Edited it as : {GameNameUpdate.GameName}</p>
-            <button onClick={() => updateHandler(val)}>EDIT ?</button>
-             </h2> 
-           )}
-           <h1>Change Game Name : </h1>
-           <input onChange={handleUpdateSubmit} value={GameNameUpdate.GameName} type="text" defaultValue="type here you updated info"/>
-            
-           
-            
-            
-            
         </div>
     )
 }

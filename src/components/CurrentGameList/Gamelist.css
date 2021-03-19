@@ -1,18 +1,28 @@
+@keyframes moveit {
+    from{left: 0px;}
+    to{left:900px;}
+}
+
 .image{
     width:20%;
     height:20%;
     margin-bottom:20px;
     margin-top: 20px;
-   
+    margin-left: 10px;
+    position: relative;
+    animation: moveit 10s infinite;
 }
+
+
 
 .list{
     padding-left: 20px;
-    text-decoration: underline;
-    text-decoration-color: red;
+    /* text-decoration: underline; 
+    text-decoration-color: red;  */
     text-shadow: 10px;
-    display: table;
-    
+    flex: 1;
+    table-layout: fixed;
+     width: 100%; 
     
     
      
