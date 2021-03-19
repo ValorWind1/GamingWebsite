@@ -5,25 +5,32 @@ const Gamelist = (props) => {
 
     const style= {
         textAlign:"left",
-        marginBottom :"50px",
+        marginBottom :"25px",
         padding: "20px",
-
+        textShadow : ""
     }
 
     const redButton = {
-        backgroundColor: "lightCoral"
+        backgroundColor: "FireBrick",
+        position : "relative",
+        marginBottom :"10px",
+        left: "30px"
         
     }
 
     const blueButton = {
-        backgroundColor : "DeepSkyBlue"
+        backgroundColor : "WhiteSmoke",
+        marginLeft: "10px",
+        position : "relative",
+        left: "30px"
+        
     }
 
 
     const array1 = [...props.games]
 
    const allofthem = array1.map((i , index) => {
-       return <li className="list" key={i._id}>Game Name : {i.GameName} made by : {i.GameCompany} 
+       return <li className="list" key={i._id}>Game Name : {i.GameName} ,Made by : {i.GameCompany} 
         <button style={redButton} onClick={(e) => props.deleteHandler(i._id,e)}>Delete</button> <button style={blueButton} onClick={() => props.selectSpecificGameHandler(i._id)} 
         >Select a game </button></li>
    })

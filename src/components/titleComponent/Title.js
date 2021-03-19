@@ -5,7 +5,8 @@ import "./Title.css"
 const Title = () => {
 
     const styleItUp = {
-       marginBottom :"50px"
+       marginBottom :"50px",
+       textDecoration: "underline"
     }
     
 

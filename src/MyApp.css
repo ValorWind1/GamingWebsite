@@ -1,3 +1,18 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
 }
+
+.flex-container {
+    display: flex;   
+    flex-direction: row;
+    
+}
+
+.flex-container > div {
+    
+    width: 1000px;
+    margin: 10px;
+    padding-left: 70px; 
+    align-items: center;
+    
+  }
