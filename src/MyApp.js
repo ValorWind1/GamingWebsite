@@ -1,5 +1,8 @@
 import React,{useState,useEffect} from "react"
 import axios from 'axios';
+import Title from "./components/titleComponent/Title"
+import Gamelist from "./components/CurrentGameList/Gamelist"
+import "./MyApp.css";
 
 const MyApp = () => {
 
@@ -99,21 +102,15 @@ const deleteHandler = (id ,e) => {
         setGameNameUpdate({GameName: event.target.value})
     }
 
-   const array1 = [...games]
-
-   const allofthem = array1.map((i , index) => {
-       return <li key={i._id}>Game Name : {i.GameName} made by : {i.GameCompany} 
-       <img src={i.GamePictureUrl} alt = "GamePicture"/> <button onClick={(e) => deleteHandler(i._id,e)}>Delete ?</button> <button onClick={() => selectSpecificGameHandler(i._id)} 
-        >Select a game ?</button></li>
-   })
 
 
     return (
         <div>
-            <h1>Games !!! </h1>
-            <h1>Current Game List</h1>
-            <button onClick={updatedListHandler}>Generate Updated List</button>
-            <h4>{allofthem}</h4>
+            <Title />
+            <Gamelist games={games} deleteHandler={deleteHandler}
+                selectSpecificGameHandler={selectSpecificGameHandler}
+            />
+            <button style={{backgroundColor:"Chartreuse"}} onClick={updatedListHandler}>Generate Updated List</button>         
             <hr></hr>
 
             <form>
